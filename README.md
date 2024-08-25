@@ -992,3 +992,4 @@ value|dictsort:"<Attribute>" # value=dict Attribute=attribute in dict
 ## Tips
 - หากแก้ไข Javascript ที่อยู่ใน Static แล้วไม่ Update ให้ใช้ `Ctrl+F5` เพื่อรีเซ็ต Cookies
 - ลองโยน Path จากคำสั่ง `{% url %}` เข้าเป็น Argument?
+# server-side-for-test

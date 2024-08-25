@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{%  block page_title %}Project{% endblock %}
+
+{%  block header %}Project{% endblock %}
+{%  block content %}
+{% for pro in project %}
+        <div class="itemGroup">
+            
+            <div class="item">
+                <!-- โปรเจค id และ ชื่อ -->
+                <div>{{pro.id}} . {{pro.name}}</div>
+
+                <!-- วันเริ่ม และ วันกำหนดส่งโปรเจค -->
+                <div>{{pro.start_date}} - {{pro.due_date}}</div>
+
+                <div class="action">
+                    <!-- กำหนด path ให้ถูกต้อง -->
+                    <a href="{% url 'project_detail' pro.id %}" class="edit btn">แก้ไข</a>
+                    
+                    <!-- ถ้า code มันแจ้งเตือนอะไรก็ปล่อยไปนะครับไม่มีผลอะไร  -->
+                    <button type="submit" onclick="deleteProject('{{pro.id}}','{{csrf_token}}')" class="delete">Delete</button>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+{% endblock %}
+

@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% load humanize %}
+{%  block page_title %}Employee{% endblock %}
+
+{%  block header %}Employee 
+Total {{num}} People
+{% endblock %}
+{%  block content %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Genger</th>
+            <th>Birth Date</th>
+            <th>Hire Date</th>
+            <th>Salary</th>
+            <th>Department</th>
+            <th>Position</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for employee in fullname|dictsort:"hire_date"%}
+        <tr {% if forloop.first or forloop.last %}
+        style="color: red;"{% endif %}
+        >
+            
+            <!-- employee id -->
+            <td>{{employee.id}}</td> 
+            <!-- ชื่อ นามสกุล -->
+            <td>{{employee.fullname}}</td>
+            <!-- เพศ -->
+            <td>{% if employee.gender == "M" %}
+                Male
+                {% endif %}
+                {% if employee.gender == "F" %}
+                Female{% endif %}
+                {% if employee.gender != "M" and employee.gender != "F" %}
+                Other{% endif %}
+            </td>
+            <!-- วันเกิด -->
+            <td>{{employee.birth_date | date:"d / m / Y"}}</td>
+            <!-- วันเริ่มงาน -->
+            <td>{{employee.hire_date}}</td>
+            <!-- เงินเดือน -->
+            <td>{{employee.salary|intcomma}}</td>
+            <!-- แผนก -->
+            <td>{{employee.position.department.name}}</td>
+            <!-- ตำแหน่งงาน -->
+            <td>{{employee.position.name}}</td>
+            
+        </tr >
+
+        {% empty %}
+        <td>Sorry don't have list</td>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
